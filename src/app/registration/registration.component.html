@@ -1,0 +1,54 @@
+<div class="c-registration">
+  <form #frm="ngForm" [formGroup]="signUpForm" (ngSubmit)="submitData()" class="c-registration__form" id="sign_up_form" autocomplete="off">
+    <div class="l-row">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName"/>
+        <mat-error *ngIf="firstName?.errors?.required">{{errorMessages.required}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName"/>
+        <mat-error *ngIf="lastName?.errors?.required">{{errorMessages.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="l-row">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email"/>
+        <mat-error *ngIf="email?.errors?.required">{{errorMessages.required}}</mat-error>
+        <mat-error *ngIf="email?.errors?.pattern">{{errorMessages.invalidEmail}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="l-row c-registration__form__password">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput [type]="passwordVisibility ? 'text' : 'password'" formControlName="password"/>
+        <mat-hint>At least 8 characters, one uppercase, one lowercase</mat-hint>
+        <mat-error *ngIf="password?.errors?.required">{{errorMessages.required}}</mat-error>
+        <mat-error *ngIf="password?.errors?.minlength">{{errorMessages.passwordStrength}}</mat-error>
+        <mat-error *ngIf="password?.errors?.upperCase">{{errorMessages.passwordUpperCase}}</mat-error>
+        <mat-error *ngIf="password?.errors?.lowerCase">{{errorMessages.passwordLowerCase}}</mat-error>
+        <mat-error *ngIf="signUpForm.errors?.include">{{errorMessages.passwordContainName}}</mat-error>
+      </mat-form-field>
+
+      <button type="button" class="c-registration__form__password-visibility" (click)="togglePasswordVisibility()" title="Toggle password visibility">
+        <span class="material-icons" *ngIf="passwordVisibility">visibility</span>
+        <span class="material-icons" *ngIf="!passwordVisibility">visibility_off</span>
+      </button>
+    </div>
+
+    <div class="l-row">
+      <div class="c-registration__form__info">
+        <p>All fields are mandatory</p>
+      </div>
+      <div class="c-registration__form__actions">
+        <button type="submit" title="Sign Up">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
