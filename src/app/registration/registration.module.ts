@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '@shared/shared.module';
 import { RegistrationRoutingModule } from './registration-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [RegistrationComponent],
@@ -18,6 +19,7 @@ import { RegistrationRoutingModule } from './registration-routing.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule
   ],
   exports: [RegistrationComponent],
 })

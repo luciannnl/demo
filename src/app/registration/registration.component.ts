@@ -5,6 +5,8 @@ import { RegistrationService } from './services/registration.service';
 import { UserDataWithCredentials } from './models/user-data';
 import { ERROR_MESSAGES } from '@shared/data/error-messages';
 import { ToastrService } from 'ngx-toastr';
+import { pipe } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration',
@@ -14,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistrationComponent implements OnInit {
   @ViewChild('frm', {static: true}) formRef!: NgForm;
   passwordVisibility: boolean = false;
+  isLoading = false;
 
   togglePasswordVisibility() {
     this.passwordVisibility = !this.passwordVisibility;
@@ -86,9 +89,12 @@ export class RegistrationComponent implements OnInit {
    */
   submitData(): void {
     if (this.signUpForm.valid) {
+      this.isLoading = true;
       const { password, ...user } = this.signUpForm
         .value as UserDataWithCredentials;
-      this.dataService.signUp(user).subscribe(
+      this.dataService.signUp(user)
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe(
         () => {
           this.formRef.resetForm();
           this.toastr.success('Registration complete!');

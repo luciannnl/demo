@@ -1,4 +1,7 @@
 <div class="c-registration">
+  <div class="loader">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
   <form #frm="ngForm" [formGroup]="signUpForm" (ngSubmit)="submitData()" class="c-registration__form" id="sign_up_form" autocomplete="off">
     <div class="l-row">
       <mat-form-field>

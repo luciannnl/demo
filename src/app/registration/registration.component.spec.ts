@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 import { UserDataWithCredentials } from './models/user-data';
 import { ToastrService } from 'ngx-toastr';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -35,6 +36,7 @@ describe('RegistrationComponent', () => {
         MatInputModule,
         MatButtonModule,
         BrowserAnimationsModule,
+        MatProgressSpinnerModule
       ],
       providers: [
         { provide: RegistrationService, useValue: dataServiceSpy },
