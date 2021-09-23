@@ -7,7 +7,7 @@ import { ApiDataService } from '@core/api-data.service';
   providedIn: 'root',
 })
 export class RegistrationService {
-  private readonly usersEndpoint = 'users';
+  readonly usersEndpoint = 'users';
   constructor(private apiService: ApiDataService) {}
 
   /**
