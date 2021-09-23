@@ -13,7 +13,7 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   @ViewChild('frm', {static: true}) formRef!: NgForm;
   passwordVisibility: boolean = false;
   isLoading = false;
@@ -78,11 +78,6 @@ export class RegistrationComponent implements OnInit {
     private dataService: RegistrationService,
     private toastr: ToastrService
   ) {}
-
-  /**
-   * @InheritDoc
-   */
-  ngOnInit(): void {}
 
   /**
    * Submit the form data to service.
